@@ -1,4 +1,3 @@
-
 // Lista de perguntas baseadas fielmente no texto do site
 const perguntas = [
     {
