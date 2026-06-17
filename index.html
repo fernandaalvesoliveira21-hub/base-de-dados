@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão Campo & Cidade</title>
+    <style>
+        /* Configurações Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cores Principais: Azul (#1d4ed8) e Verde (#15803d) */
+        header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #15803d 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Container do Conteúdo */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Seções Lado a Lado (Cards) */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 5px solid;
+        }
+
+        .card-campo {
+            border-top-color: #15803d; /* Verde */
+        }
+
+        .card-cidade {
+            border-top-color: #1d4ed8; /* Azul */
+        }
+
+        .card h2 {
+            margin-bottom: 1rem;
+            color: #222;
+        }
+
+        /* Botão de Ação */
+        .btn-saiba-mais {
+            display: inline-block;
+            background: #15803d;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .btn-saiba-mais:hover {
+            background: #116631;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Conexão Campo & Cidade</h1>
+        <p>Unindo a tecnologia urbana à força da produção agrícola.</p>
+    </header>
+
+    <div class="container">
+        
+        <section style="text-align: center; margin-bottom: 3rem;">
+            <h2>Por que essa conexão importa?</h2>
+            <p style="max-width: 700px; margin: 1rem auto; color: #666;">
+                Nenhum dos dois lados vive sozinho. O campo produz os alimentos e a matéria-prima que sustentam as grandes metrópoles, enquanto a cidade desenvolve as tecnologias e ferramentas que otimizam o trabalho na terra.
+            </p>
+        </section>
+
+        <div class="features">
+            
+            <div class="card card-campo">
+                <h2>🌱 A Força do Campo</h2>
+                <p>Descubra a origem dos alimentos, a importância da agricultura familiar e como as práticas sustentáveis protegem o nosso futuro e abastecem as mesas de milhares de pessoas todos os dias.</p>
+                <a href="#" class="btn-saiba-mais">Explorar o Campo</a>
+            </div>
+
+            <div class="card card-cidade">
+                <h2>🏙️ A Inovação da Cidade</h2>
+                <p>Veja como o ecossistema urbano contribui com tecnologia de ponta, internet das coisas (IoT), drones e inteligência artificial para tornar o campo cada vez mais produtivo e eficiente.</p>
+                <a href="#" class="btn-saiba-mais" style="background: #1d4ed8;">Explorar a Cidade</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Projeto Conexão Campo & Cidade. Criado no GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
