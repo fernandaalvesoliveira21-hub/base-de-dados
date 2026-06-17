@@ -1,89 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Campo & Cidade</title>
-    <style>
-        /* Variáveis de Cores - Facilita a customização */
-        :root {
-            --cor-azul-cidade: #1d4ed8;
-            --cor-verde-campo: #15803d;
-            --cor-fundo: #f8fafc;
-            --cor-texto-escuro: #1e293b;
-            --cor-texto-claro: #64748b;
-            --card-fundo: #ffffff;
-        }
+</section> <section class="secao-quiz">
+            <h2>📝 Desafio da Conexão: O que você aprendeu?</h2>
+            <p class="quiz-subtitulo">Responda Verdadeiro ou Falso com base no texto acima!</p>
+            
+            <div id="container-quiz">
+                <div id="pergunta-box">
+                    <p id="texto-pergunta"></p>
+                </div>
 
-        /* Reset Geral */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
+                <div class="botoes-quiz">
+                    <button onclick="verificarResposta(true)" class="btn-quiz btn-verdadeiro">Verdadeiro</button>
+                    <button onclick="verificarResposta(false)" class="btn-quiz btn-falso">Falso</button>
+                </div>
 
-        body {
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto-escuro);
-            line-height: 1.6;
-        }
+                <div id="feedback" class="escondido"></div>
+            </div>
 
-        /* Cabeçalho com Degradê Combinando as Cores */
-        header {
-            background: linear-gradient(135deg, var(--cor-azul-cidade) 0%, var(--cor-verde-campo) 100%);
-            color: white;
-            padding: 3.5rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
+            <div id="resultado-final" class="escondido">
+                <h3>🎉 Desafio Concluído!</h3>
+                <p id="pontuacao-texto"></p>
+                <button onclick="reiniciarQuiz()" class="btn btn-azul">Tentar Novamente</button>
+            </div>
+        </section>
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.05em;
-        }
+    </main>
 
-        header p {
-            font-size: 1.15rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-            font-weight: 300;
-        }
+    <footer>
+        <p>&copy; 2026 - Conexão Campo & Cidade. Desenvolvido e hospedado com GitHub Pages.</p>
+    </footer>
 
-        /* Container Principal */
-        main {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Seção de Introdução */
-        .introducao {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .introducao h2 {
-            font-size: 1.8rem;
-            color: var(--cor-texto-escuro);
-            margin-bottom: 1rem;
-        }
-
-        .introducao p {
-            font-size: 1.1rem;
-            color: var(--cor-texto-claro);
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
-        /* Grid de Cards Responsivo */
-        .grade-conexao {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Estr
+    <script src="script.js"></script>
+</body>
+</html>
