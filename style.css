@@ -1,56 +1,119 @@
+/* ============================================================
+   ESTILOS DO QUIZ INTERATIVO
+   ============================================================ */
+.secao-quiz {
+    background: var(--cor-fundo-card);
+    margin-top: 5rem;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 2px solid #e2e8f0;
+}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Campo & Cidade</title>
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+.secao-quiz h2 {
+    color: var(--cor-principal-azul);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
 
-    <header>
-        <div class="header-content">
-            <h1>Conexão Campo & Cidade</h1>
-            <p>Descubra a interdependência e as tecnologias que unem a produção agrícola ao desenvolvimento urbano.</p>
-        </div>
-    </header>
+.quiz-subtitulo {
+    color: var(--cor-texto-claro);
+    margin-bottom: 2.5rem;
+}
 
-    <main>
-        
-        <section class="introducao">
-            <h2>O Ecossistema da Nossa Sociedade</h2>
-            <p>
-                Nenhum dos dois lados prospera sozinho. O campo garante a segurança alimentar e a sustentabilidade ambiental que abastecem as metrópoles. Em contrapartida, a cidade desenvolve soluções tecnológicas, logística e inovação que otimizam o trabalho no interior.
-            </p>
-        </section>
+#pergunta-box {
+    background-color: var(--cor-fundo-pagina);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border-left: 6px solid var(--cor-principal-azul);
+}
 
-        <section class="grade-conexao">
-            
-            <article class="card card-campo">
-                <div>
-                    <h3>🌱 A Força do Campo</h3>
-                    <p>Entenda o caminho que o alimento percorre até a sua mesa. Conheça a importância da agricultura familiar, o manejo sustentável da terra e como o agronegócio move a economia do nosso país.</p>
-                </div>
-                <a href="#" class="btn btn-verde">Explorar o Campo</a>
-            </article>
+#texto-pergunta {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--cor-texto-titulo);
+}
 
-            <article class="card card-cidade">
-                <div>
-                    <h3>🏙️ A Inovação da Cidade</h3>
-                    <p>Acompanhe como a tecnologia urbana transforma o dia a dia rural. Veja o impacto do uso de drones, sensores inteligentes (IoT), automação de maquinários e a inteligência de dados na produção de alimentos.</p>
-                </div>
-                <a href="#" class="btn btn-azul">Explorar a Cidade</a>
-            </article>
+.botoes-quiz {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
 
-        </section>
+.btn-quiz {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--fonte-titulos);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    color: white;
+}
 
-    </main>
+.btn-quiz:hover {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+}
 
-    <footer>
-        <p>&copy; 2026 - Conexão Campo & Cidade. Desenvolvido e hospedado com GitHub Pages.</p>
-    </footer>
+.btn-verdadeiro {
+    background-color: var(--cor-verde-campo);
+}
 
-</body>
-</html>
+.btn-falso {
+    background-color: #dc2626; /* Vermelho para o Falso */
+}
+
+/* Feedbacks Visuais */
+#feedback {
+    padding: 1.2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-top: 1.5rem;
+    animation: abrirFeedback 0.3s ease;
+}
+
+.feedback-correto {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.feedback-errado {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+#resultado-final h3 {
+    font-size: 2rem;
+    color: var(--cor-verde-campo);
+    margin-bottom: 1rem;
+}
+
+#pontuacao-texto {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Classe utilitária para esconder elementos */
+.escondido {
+    display: none !important;
+}
+
+@keyframes abrirFeedback {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .botoes-quiz { flex-direction: column; gap: 1rem; }
+    .btn-quiz { width: 100%; }
+    .secao-quiz { padding: 2rem 1.5rem; }
+}
