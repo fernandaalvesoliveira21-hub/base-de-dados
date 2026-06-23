@@ -1,86 +1,92 @@
-// Lista de perguntas baseadas fielmente no texto do site
+// Banco de dados centralizado das perguntas
 const perguntas = [
     {
-        texto: "O campo e a cidade são totalmente independentes e prosperam sozinhos.",
-        resposta: false, // Falso, pois o texto diz que "Nenhum dos dois lados prospera sozinho"
-        explicacao: "Incorreto! O texto afirma que nenhum dos lados prospera sozinho, existindo uma interdependência entre eles."
+        texto: "O êxodo rural é o movimento de pessoas da cidade para o campo.",
+        respostaCorreta: false,
+        feedback: "O êxodo rural é a saída do campo em direção à cidade."
     },
     {
-        texto: "O campo garante a segurança alimentar e a sustentabilidade ambiental que abastecem as metrópoles.",
-        resposta: true, // Verdadeiro
-        explicacao: "Exato! É o campo que produz os alimentos e cuida do manejo sustentável da terra para abastecer as cidades."
+        texto: "A agricultura familiar produz grande parte dos alimentos que chegam às cidades.",
+        respostaCorreta: true,
+        feedback: "A agricultura familiar é a base do abastecimento do mercado interno."
     },
     {
-        texto: "A cidade contribui desenvolvendo soluções tecnológicas, logística e inovação para o interior.",
-        resposta: true, // Verdadeiro
-        explicacao: "Perfeito! A cidade impulsiona o campo fornecendo tecnologia de ponta, inteligência de dados e maquinários."
-    },
-    {
-        texto: "O uso de drones, sensores inteligentes (IoT) e automação são tecnologias que transformam o dia a dia rural.",
-        resposta: true, // Verdadeiro
-        explicacao: "Correto! Essas são as inovações urbanas aplicadas diretamente na produção de alimentos do campo."
+        texto: "A tecnologia urbana, como drones e IoT, ajuda a otimizar a produção no campo.",
+        respostaCorreta: true,
+        feedback: "A inovação das cidades interliga e moderniza as práticas agrícolas."
     }
 ];
 
-let indicePerguntaAtual = 0;
+let indiceAtual = 0;
 let pontuacao = 0;
+let aguardandoProxima = false; // Flag para impedir cliques repetidos durante a transição
 
-// Elementos do HTML que o JavaScript vai controlar
-const textoPerguntaElement = document.getElementById("texto-pergunta");
-const feedbackElement = document.getElementById("feedback");
-const containerQuizElement = document.getElementById("container-quiz");
-const resultadoFinalElement = document.getElementById("resultado-final");
-const pontuacaoTextoElement = document.getElementById("pontuacao-texto");
+// Cache de elementos do DOM para melhor performance
+const textoPergunta = document.getElementById("texto-pergunta");
+const feedbackBox = document.getElementById("feedback");
+const containerQuiz = document.getElementById("container-quiz");
+const resultadoFinal = document.getElementById("resultado-final");
+const pontuacaoTexto = document.getElementById("pontuacao-texto");
+const botoesResposta = document.querySelectorAll(".botoes-quiz .btn-quiz");
 
-// Função para iniciar ou atualizar a pergunta na tela
 function carregarPergunta() {
-    if (indicePerguntaAtual < perguntas.length) {
-        // Mostra a pergunta atual
-        textoPerguntaElement.textContent = `${indicePerguntaAtual + 1}. ${perguntas[indicePerguntaAtual].texto}`;
-        feedbackElement.className = "escondido"; // Esconde o feedback da pergunta anterior
-        feedbackElement.textContent = "";
+    aguardandoProxima = false;
+    
+    // Reseta o estado visual do feedback
+    feedbackBox.classList.add("escondido");
+    feedbackBox.className = ""; 
+    feedbackBox.innerText = "";
+
+    // Reativa os botões para a nova pergunta
+    botoesResposta.forEach(btn => btn.removeAttribute("disabled"));
+
+    if (indiceAtual < perguntas.length) {
+        textoPergunta.innerText = perguntas[indiceAtual].texto;
     } else {
-        // Se acabarem as perguntas, mostra o resultado final
-        mostrarResultadoFinal();
+        mostrarResultado();
     }
 }
 
-// Função que verifica se o usuário clicou na resposta certa
 function verificarResposta(respostaUsuario) {
-    const perguntaAtual = perguntas[indicePerguntaAtual];
-    
-    // Impede cliques duplos enquanto exibe o feedback
-    feedbackElement.classList.remove("escondido");
-    
-    if (respostaUsuario === perguntaAtual.resposta) {
+    // Se o sistema já estiver processando a transição de pergunta, ignora novos cliques
+    if (aguardandoProxima) return;
+    aguardandoProxima = true;
+
+    // Desativa os botões visualmente e funcionalmente
+    botoesResposta.forEach(btn => btn.setAttribute("disabled", "true"));
+
+    const pergunta = perguntas[indiceAtual];
+    feedbackBox.classList.remove("escondido");
+
+    if (respostaUsuario === pergunta.respostaCorreta) {
         pontuacao++;
-        feedbackElement.textContent = "✅ " + perguntaAtual.explicacao;
-        feedbackElement.className = "feedback-correto";
+        feedbackBox.innerText = `✨ Correto! ${pergunta.feedback}`;
+        feedbackBox.classList.add("feedback-correto");
     } else {
-        feedbackElement.textContent = "❌ " + perguntaAtual.explicacao;
-        feedbackElement.className = "feedback-errado";
+        feedbackBox.innerText = `❌ Incorreto. ${pergunta.feedback}`;
+        feedbackBox.classList.add("feedback-incorreto");
     }
 
-    // Espera 3.5 segundos para o usuário ler a explicação e passa para a próxima pergunta
-    indicePerguntaAtual++;
-    setTimeout(carregarPergunta, 3500);
+    // Transição suave após 3 segundos
+    setTimeout(() => {
+        indiceAtual++;
+        carregarPergunta();
+    }, 3000);
 }
 
-// Mostra a tela de fim de jogo
-function mostrarResultadoFinal() {
-    containerQuizElement.style.display = "none";
-    resultadoFinalElement.classList.remove("escondido");
-    pontuacaoTextoElement.textContent = `Você acertou ${pontuacao} de ${perguntas.length} questões!`;
+function mostrarResultado() {
+    containerQuiz.classList.add("escondido");
+    resultadoFinal.classList.remove("escondido");
+    pontuacaoTexto.innerText = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
 }
 
-// Função para resetar o quiz se o usuário quiser jogar de novo
 function reiniciarQuiz() {
-    indicePerguntaAtual = 0;
+    indiceAtual = 0;
     pontuacao = 0;
-    containerQuizElement.style.display = "block";
-    resultadoFinalElement.classList.add("escondido");
+    resultadoFinal.classList.add("escondido");
+    containerQuiz.classList.remove("escondido");
     carregarPergunta();
 }
 
-// Inicializa o quiz assim que a página carrega
-window.onload = carregarPergunta;
+// Inicialização segura assim que o DOM estiver pronto
+document.addEventListener("DOMContentLoaded", carregarPergunta);
