@@ -1,119 +1,106 @@
-/* ============================================================
-   ESTILOS DO QUIZ INTERATIVO
-   ============================================================ */
-.secao-quiz {
-    background: var(--cor-fundo-card);
-    margin-top: 5rem;
-    padding: 3rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    border: 2px solid #e2e8f0;
-}
-
-.secao-quiz h2 {
-    color: var(--cor-principal-azul);
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.quiz-subtitulo {
-    color: var(--cor-texto-claro);
-    margin-bottom: 2.5rem;
-}
-
-#pergunta-box {
-    background-color: var(--cor-fundo-pagina);
-    padding: 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    border-left: 6px solid var(--cor-principal-azul);
-}
-
-#texto-pergunta {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: var(--cor-texto-titulo);
-}
-
-.botoes-quiz {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.btn-quiz {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    font-family: var(--fonte-titulos);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s, filter 0.2s;
-    color: white;
-}
-
-.btn-quiz:hover {
-    transform: scale(1.05);
-    filter: brightness(0.9);
-}
-
-.btn-verdadeiro {
-    background-color: var(--cor-verde-campo);
-}
-
-.btn-falso {
-    background-color: #dc2626; /* Vermelho para o Falso */
-}
-
-/* Feedbacks Visuais */
-#feedback {
-    padding: 1.2rem;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 1.05rem;
-    margin-top: 1.5rem;
-    animation: abrirFeedback 0.3s ease;
-}
-
-.feedback-correto {
-    background-color: #dcfce7;
-    color: #166534;
-    border: 1px solid #bbf7d0;
-}
-
-.feedback-errado {
-    background-color: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fecaca;
-}
-
-#resultado-final h3 {
-    font-size: 2rem;
-    color: var(--cor-verde-campo);
-    margin-bottom: 1rem;
-}
-
-#pontuacao-texto {
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
-    font-weight: 500;
-}
-
-/* Classe utilitária para esconder elementos */
+/* --- RESET & UTILITÁRIOS --- */
 .escondido {
     display: none !important;
 }
 
-@keyframes abrirFeedback {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* --- SEÇÃO DO QUIZ --- */
+.secao-quiz {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-family: sans-serif;
 }
 
-@media (max-width: 600px) {
-    .botoes-quiz { flex-direction: column; gap: 1rem; }
-    .btn-quiz { width: 100%; }
-    .secao-quiz { padding: 2rem 1.5rem; }
+#pergunta-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #007bff;
+}
+
+#texto-pergunta {
+    font-size: 1.15rem;
+    color: #333333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- BOTÕES DO QUIZ --- */
+.botoes-quiz {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn-quiz {
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-verdadeiro {
+    background-color: #2ec4b6;
+    color: #ffffff;
+}
+
+.btn-verdadeiro:not(:disabled):hover {
+    background-color: #25a195;
+}
+
+.btn-falso {
+    background-color: #e71d36;
+    color: #ffffff;
+}
+
+.btn-falso:not(:disabled):hover {
+    background-color: #c5182b;
+}
+
+/* Estado de clique ativo (efeito de afundar) */
+.btn-quiz:not(:disabled):active {
+    transform: scale(0.98);
+}
+
+/* Evita interações físicas e visuais quando desabilitado */
+.btn-quiz:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- BOXES DE FEEDBACK --- */
+#feedback {
+    padding: 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.feedback-correto {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.feedback-incorreto {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* --- ANIMAÇÃO DE ENTRADA --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
