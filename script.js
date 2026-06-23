@@ -1,27 +1,27 @@
-// Banco de dados centralizado das perguntas
+// Banco de dados das perguntas do Quiz (Foco nos conceitos centrais)
 const perguntas = [
     {
         texto: "O êxodo rural é o movimento de pessoas da cidade para o campo.",
         respostaCorreta: false,
-        feedback: "O êxodo rural é a saída do campo em direção à cidade."
+        feedback: "O êxodo rural é a saída em massa do campo em direção às cidades."
     },
     {
-        texto: "A agricultura familiar produz grande parte dos alimentos que chegam às cidades.",
+        texto: "A agricultura familiar produz grande parte dos alimentos frescos que chegam às nossas mesas.",
         respostaCorreta: true,
-        feedback: "A agricultura familiar é a base do abastecimento do mercado interno."
+        feedback: "A agricultura familiar é a base do abastecimento do mercado interno de alimentos."
     },
     {
-        texto: "A tecnologia urbana, como drones e IoT, ajuda a otimizar a produção no campo.",
+        texto: "A tecnologia urbana, como drones e IoT (sensores), ajuda a otimizar a produção no campo.",
         respostaCorreta: true,
-        feedback: "A inovação das cidades interliga e moderniza as práticas agrícolas."
+        feedback: "A inovação vinda dos centros urbanos moderniza e traz precisão para as práticas agrícolas."
     }
 ];
 
 let indiceAtual = 0;
 let pontuacao = 0;
-let aguardandoProxima = false; // Flag para impedir cliques repetidos durante a transição
+let aguardandoProxima = false;
 
-// Cache de elementos do DOM para melhor performance
+// Cache de elementos do DOM
 const textoPergunta = document.getElementById("texto-pergunta");
 const feedbackBox = document.getElementById("feedback");
 const containerQuiz = document.getElementById("container-quiz");
@@ -32,12 +32,10 @@ const botoesResposta = document.querySelectorAll(".botoes-quiz .btn-quiz");
 function carregarPergunta() {
     aguardandoProxima = false;
     
-    // Reseta o estado visual do feedback
     feedbackBox.classList.add("escondido");
     feedbackBox.className = ""; 
     feedbackBox.innerText = "";
 
-    // Reativa os botões para a nova pergunta
     botoesResposta.forEach(btn => btn.removeAttribute("disabled"));
 
     if (indiceAtual < perguntas.length) {
@@ -48,11 +46,9 @@ function carregarPergunta() {
 }
 
 function verificarResposta(respostaUsuario) {
-    // Se o sistema já estiver processando a transição de pergunta, ignora novos cliques
     if (aguardandoProxima) return;
     aguardandoProxima = true;
 
-    // Desativa os botões visualmente e funcionalmente
     botoesResposta.forEach(btn => btn.setAttribute("disabled", "true"));
 
     const pergunta = perguntas[indiceAtual];
@@ -67,7 +63,7 @@ function verificarResposta(respostaUsuario) {
         feedbackBox.classList.add("feedback-incorreto");
     }
 
-    // Transição suave após 3 segundos
+    // Avança para a próxima pergunta após 3 segundos
     setTimeout(() => {
         indiceAtual++;
         carregarPergunta();
@@ -88,5 +84,5 @@ function reiniciarQuiz() {
     carregarPergunta();
 }
 
-// Inicialização segura assim que o DOM estiver pronto
+// Inicializa o quiz quando o conteúdo estiver pronto
 document.addEventListener("DOMContentLoaded", carregarPergunta);
