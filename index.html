@@ -1,10 +1,53 @@
-</section> <section class="secao-quiz">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão Campo & Cidade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>Conexão Campo & Cidade</h1>
+            <p>Descubra a interdependência e as tecnologias que unem a produção agrícola ao desenvolvimento urbano.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="introducao">
+            <h2>O Ecossistema da Nossa Sociedade</h2>
+            <p>
+                Nenhum dos dois lados prospera sozinho. O campo garante a segurança alimentar e a sustentabilidade ambiental que abastecem as metrópoles. Em contrapartida, a cidade desenvolve soluções tecnológicas, logística e inovação que otimizam o trabalho no interior.
+            </p>
+        </section>
+
+        <section class="grade-conexao">
+            <article class="card card-campo">
+                <div>
+                    <h3>🌱 A Força do Campo</h3>
+                    <p>Entenda o caminho que o alimento percorre até a sua mesa. Conheça a importância da agricultura familiar, o manejo sustentável da terra e como o agronegócio move a economia do nosso país.</p>
+                </div>
+                <a href="#" class="btn btn-verde">Explorar o Campo</a>
+            </article>
+
+            <article class="card card-cidade">
+                <div>
+                    <h3>🏙️ A Inovação da Cidade</h3>
+                    <p>Acompanhe como a tecnologia urbana transforma o dia a dia rural. Veja o impacto do uso de drones, sensores inteligentes (IoT), automação de maquinários e a inteligência de dados na produção de alimentos.</p>
+                </div>
+                <a href="#" class="btn btn-azul">Explorar a Cidade</a>
+            </article>
+        </section>
+
+        <section class="secao-quiz">
             <h2>📝 Desafio da Conexão: O que você aprendeu?</h2>
             <p class="quiz-subtitulo">Responda Verdadeiro ou Falso com base no texto acima!</p>
             
             <div id="container-quiz">
                 <div id="pergunta-box">
-                    <p id="texto-pergunta"></p>
+                    <p id="texto-pergunta" aria-live="polite"></p>
                 </div>
 
                 <div class="botoes-quiz">
@@ -12,7 +55,7 @@
                     <button onclick="verificarResposta(false)" class="btn-quiz btn-falso">Falso</button>
                 </div>
 
-                <div id="feedback" class="escondido"></div>
+                <div id="feedback" class="escondido" role="alert" aria-live="assertive"></div>
             </div>
 
             <div id="resultado-final" class="escondido">
@@ -21,7 +64,6 @@
                 <button onclick="reiniciarQuiz()" class="btn btn-azul">Tentar Novamente</button>
             </div>
         </section>
-
     </main>
 
     <footer>
